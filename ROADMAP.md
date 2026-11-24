@@ -45,16 +45,16 @@
 ## 🟦 PARTE A: BACKEND (Spring Boot)
 
 ### A0. Definições
-- [ ] Confirmar o tema **Loja** 
-- [ ] Desenhar o modelo de dados (Categoria, Produto, Usuario) com seus atributos
-- [ ] Listar os endpoints no papel
-- [ ] Criar o repositório git com as pastas `/backend` e `/frontend`
-- [ ] Conferir se o `.gitignore` está na raiz **antes do primeiro commit** (já cobre `.DS_Store`)
+- [X] Confirmar o tema **Loja** 
+- [X] Desenhar o modelo de dados (Categoria, Produto, Usuario) com seus atributos → ver [MODELAGEM.md](MODELAGEM.md)
+- [X] Listar os endpoints no papel
+- [X] Criar o repositório git com as pastas `/backend` e `/frontend`
+- [X] Conferir se o `.gitignore` está na raiz **antes do primeiro commit** (já cobre `.DS_Store`)
 
 ### A1. Projeto base
-- [ ] Gerar o projeto em [start.spring.io](https://start.spring.io) (Web, Data JPA, H2, Validation, Security)
-- [ ] Subir a aplicação vazia sem erros
-- [ ] Criar os pacotes `controller`, `service`, `repository`, `model`, `dto`
+- [X] Gerar o projeto em [start.spring.io](https://start.spring.io) (Web, Data JPA, H2, Validation, Security)
+- [X] Subir a aplicação vazia sem erros
+- [X] Criar os pacotes `controller`, `service`, `repository`, `model`, `dto`
 
 ### A2. Entidades e Repository
 - [ ] Entidade `Categoria` com `@OneToMany`
