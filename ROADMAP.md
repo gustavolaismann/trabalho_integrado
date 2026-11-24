@@ -34,11 +34,11 @@
 
 ## 📊 Progresso geral
 
-- [ ] **Parte A:** Backend *(em andamento: A0, A1 e A2 concluídas)*
+- [ ] **Parte A:** Backend *(em andamento: A0 a A3 concluídas)*
 - [ ] **Parte B:** Frontend
 - [ ] **Parte C:** Entrega
 
-> 📍 **Parou em:** início da A3 (DTOs com `record`).
+> 📍 **Parou em:** início da A4 (criar o pacote `mapper`, depois Service e Controller de Produto).
 
 > 💡 O front consome a API, então termine pelo menos o CRUD e o login do backend antes de avançar muito no Angular.
 
@@ -70,10 +70,10 @@
 > 📚 **Estudar:** mapeamento JPA, lado dono do relacionamento, lazy e eager.
 
 ### A3. DTOs (`record`)
-- [ ] `CategoriaRequest` e `CategoriaResponse`
-- [ ] `ProdutoRequest` e `ProdutoResponse`
-- [ ] `LoginRequest` e `LoginResponse` (token)
-- [ ] Conferir se nenhuma entidade é usada como corpo de requisição ou resposta
+- [x] `CategoriaRequest` e `CategoriaResponse`
+- [x] `ProdutoRequest` e `ProdutoResponse`
+- [x] `LoginRequest` e `LoginResponse` (token)
+- [x] Conferir se nenhuma entidade é usada como corpo de requisição ou resposta
 
 ### A4. Service e Controller (CRUD de Produto)
 - [ ] Criar (`POST`)
