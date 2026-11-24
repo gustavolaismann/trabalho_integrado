@@ -34,11 +34,11 @@
 
 ## 📊 Progresso geral
 
-- [ ] **Parte A:** Backend *(em andamento: A0 e A1 concluídas, A2 parcial)*
+- [ ] **Parte A:** Backend *(em andamento: A0, A1 e A2 concluídas)*
 - [ ] **Parte B:** Frontend
 - [ ] **Parte C:** Entrega
 
-> 📍 **Parou em:** A2, faltam os 3 repositories (`CategoriaRepository`, `ProdutoRepository`, `UsuarioRepository`).
+> 📍 **Parou em:** início da A3 (DTOs com `record`).
 
 > 💡 O front consome a API, então termine pelo menos o CRUD e o login do backend antes de avançar muito no Angular.
 
@@ -63,9 +63,9 @@
 - [x] Entidade `Produto` com `@ManyToOne`
 - [x] Entidade `Usuario` (login, senha e perfil)
 - [x] Enum `Perfil` (`ADMIN`, `COMUM`)
-- [ ] `CategoriaRepository`
-- [ ] `ProdutoRepository`
-- [ ] `UsuarioRepository`
+- [x] `CategoriaRepository`
+- [x] `ProdutoRepository`
+- [x] `UsuarioRepository`
 
 > 📚 **Estudar:** mapeamento JPA, lado dono do relacionamento, lazy e eager.
 
