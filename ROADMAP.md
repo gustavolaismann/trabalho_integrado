@@ -34,9 +34,11 @@
 
 ## 📊 Progresso geral
 
-- [ ] **Parte A:** Backend
+- [ ] **Parte A:** Backend *(em andamento: A0 e A1 concluídas, A2 parcial)*
 - [ ] **Parte B:** Frontend
 - [ ] **Parte C:** Entrega
+
+> 📍 **Parou em:** A2, faltam os 3 repositories (`CategoriaRepository`, `ProdutoRepository`, `UsuarioRepository`).
 
 > 💡 O front consome a API, então termine pelo menos o CRUD e o login do backend antes de avançar muito no Angular.
 
@@ -57,9 +59,10 @@
 - [X] Criar os pacotes `controller`, `service`, `repository`, `model`, `dto`
 
 ### A2. Entidades e Repository
-- [ ] Entidade `Categoria` com `@OneToMany`
-- [ ] Entidade `Produto` com `@ManyToOne`
-- [ ] Entidade `Usuario` (login, senha e perfil)
+- [x] Entidade `Categoria` com `@OneToMany`
+- [x] Entidade `Produto` com `@ManyToOne`
+- [x] Entidade `Usuario` (login, senha e perfil)
+- [x] Enum `Perfil` (`ADMIN`, `COMUM`)
 - [ ] `CategoriaRepository`
 - [ ] `ProdutoRepository`
 - [ ] `UsuarioRepository`
