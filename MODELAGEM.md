@@ -73,28 +73,31 @@ erDiagram
 
 ## 3. DTOs (`record`)
 
-As entidades não aparecem em requisições nem em respostas.
+As entidades não aparecem em requisições nem em respostas. Os arquivos ficam no pacote `dto` e usam o sufixo `Dto`.
 
 ### Categoria
 ```java
-public record CategoriaRequest(
-    @NotBlank @Size(max = 100) String nome,
-    @Size(max = 255) String descricao
+public record CategoriaRequestDto(
+    @NotBlank(message = "O nome é obrigatório")
+    @Size(min = 2, max = 100, message = "O nome deve ter entre 2 e 100 caracteres.")
+    String nome,
+    @Size(max = 255, message = "A descrição não pode passar de 255 caracteres.")
+    String descricao
 ) {}
 
-public record CategoriaResponse(Long id, String nome, String descricao) {}
+public record CategoriaResponseDto(Long id, String nome, String descricao) {}
 ```
 
 ### Produto
 ```java
-public record ProdutoRequest(
-    @NotBlank @Size(max = 100) String nome,
-    @NotBlank @Size(max = 30) String cor,
+public record ProdutoRequestDto(
+    @NotBlank @Size(min = 2, max = 100) String nome,
+    @NotBlank @Size(min = 2, max = 30) String cor,
     @NotNull @Positive BigDecimal preco,
     @NotNull Long categoriaId
 ) {}
 
-public record ProdutoResponse(
+public record ProdutoResponseDto(
     Long id, String nome, String cor, BigDecimal preco,
     Long categoriaId, String categoriaNome
 ) {}
@@ -102,10 +105,26 @@ public record ProdutoResponse(
 
 ### Autenticação
 ```java
-public record LoginRequest(@NotBlank String login, @NotBlank String senha) {}
+public record LoginRequestDto(@NotBlank String login, @NotBlank String senha) {}
 
-public record LoginResponse(String token, String login, String perfil) {}
+public record LoginResponseDto(String token, String login, String perfil) {}
 ```
+
+> O `LoginResponseDto` é montado direto no `AuthService`, sem mapper, porque o token não vem de uma entidade.
+
+---
+
+## 3.1 Mappers
+
+Ficam no pacote `mapper`. São conversores puros: não consultam o banco.
+
+| Mapper | Método | Função |
+|---|---|---|
+| `CategoriaMapper` | `toEntity(CategoriaRequestDto)` | DTO para entidade |
+| `CategoriaMapper` | `toResponse(Categoria)` | Entidade para DTO |
+| `ProdutoMapper` | `toEntity(ProdutoRequestDto, Categoria)` | DTO para entidade. O **Service** busca a categoria e a entrega pronta |
+| `ProdutoMapper` | `toResponse(Produto)` | Entidade para DTO, com `categoriaId` e `categoriaNome` |
+| `ProdutoMapper` | `atualizar(Produto, ProdutoRequestDto, Categoria)` | Altera a entidade existente (usado no `PUT`) |
 
 ---
 
@@ -134,6 +153,8 @@ public record LoginResponse(String token, String login, String perfil) {}
 | só `cor` | Produtos cuja cor **contém** o texto (sem diferenciar maiúsculas) |
 | `nome` e `cor` | Produtos que atendem aos dois |
 
+> O `ProdutoService` converte `nome` e `cor` nulos em texto vazio, e o repository usa `findByNomeContainingIgnoreCaseAndCorContainingIgnoreCase`. Os quatro casos usam o mesmo método.
+
 > Perfil `COMUM` só consulta. Perfil `ADMIN` também cria, altera e exclui (extra de 0,5).
 
 ---
@@ -153,6 +174,8 @@ public record LoginResponse(String token, String login, String perfil) {}
 ---
 
 ## 6. Formato padrão de erro
+
+> **Status:** o `404` está implementado (`ErroResponse` como record, `GlobalExceptionHandler` com `@RestControllerAdvice`). O `400` com o mapa `campos` e os demais ficam para as próximas etapas.
 
 Um `@ControllerAdvice` devolve sempre o mesmo formato. O front usa o campo `mensagem` para exibir o erro ao usuário.
 
@@ -210,9 +233,10 @@ com.unipar.lojaapi
 ├── service      (AuthService, CategoriaService, ProdutoService)
 ├── repository   (CategoriaRepository, ProdutoRepository, UsuarioRepository)
 ├── model        (Categoria, Produto, Usuario, Perfil)
-├── dto          (records de request e response)
+├── dto          (records de request e response, sufixo Dto)
+├── mapper       (CategoriaMapper, ProdutoMapper)
 ├── security     (JwtService, JwtFilter, SecurityConfig)
-└── exception    (RecursoNaoEncontradoException, GlobalExceptionHandler)
+└── exception    (RecursoNaoEncontradoException, ErroResponse, GlobalExceptionHandler)
 ```
 
 ---

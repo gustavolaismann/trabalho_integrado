@@ -91,7 +91,8 @@
 - [ ] `GET /produtos?nome=&cor=` (**múltiplos parâmetros**)
 - [ ] Testar combinações (só nome, só cor, ambos, nenhum)
 
-### A6. Login e segurança
+### A6. Login e segurançagit add backend/loja-api/src/main/java/com/unipar/lojaapi/controller/ProdutoController.java
+  git commit -m "feat(backend): implementa ProdutoController com CRUD e consulta por nome/cor (A4/A5)" 
 - [ ] `PasswordEncoder` (BCrypt) para as senhas
 - [ ] `POST /auth/login` devolvendo o JWT
 - [ ] Filtro JWT validando o token nas requisições
