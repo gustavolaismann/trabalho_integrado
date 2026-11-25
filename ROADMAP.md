@@ -34,11 +34,11 @@
 
 ## 📊 Progresso geral
 
-- [ ] **Parte A:** Backend *(em andamento: A0 a A3 concluídas)*
+- [ ] **Parte A:** Backend *(em andamento: A0 a A3 concluídas, A4 e A5 em andamento)*
 - [ ] **Parte B:** Frontend
 - [ ] **Parte C:** Entrega
 
-> 📍 **Parou em:** início da A4 (criar o pacote `mapper`, depois Service e Controller de Produto).
+> 📍 **Parou em:** A4/A5, faltam o `GET /categorias/{id}`, o teste no Swagger, o handler do erro 400 de validação e a pendência do 409 (categoria duplicada).
 
 > 💡 O front consome a API, então termine pelo menos o CRUD e o login do backend antes de avançar muito no Angular.
 
@@ -76,23 +76,28 @@
 - [x] Conferir se nenhuma entidade é usada como corpo de requisição ou resposta
 
 ### A4. Service e Controller (CRUD de Produto)
-- [ ] Criar (`POST`)
-- [ ] Listar (`GET`)
-- [ ] Buscar por ID (`GET /{id}`)
-- [ ] Atualizar (`PUT`)
-- [ ] Excluir (`DELETE`)
-- [ ] Regras de negócio na camada **Service** (ex.: preço > 0, categoria existente)
-- [ ] Validações com Bean Validation (`@NotBlank`, `@Positive`...)
-- [ ] `@ControllerAdvice` tratando 400 e 404 com mensagens claras
-- [ ] CRUD básico de Categoria (ao menos listar e criar)
+- [x] Pacote `mapper` (`CategoriaMapper`, `ProdutoMapper` com `toEntity`, `toResponse` e `atualizar`)
+- [x] Pacote `exception` (`RecursoNaoEncontradoException`, `ErroResponse` como record, `GlobalExceptionHandler`)
+- [x] Criar (`POST`)
+- [x] Listar (`GET`)
+- [x] Buscar por ID (`GET /{id}`)
+- [x] Atualizar (`PUT`)
+- [x] Excluir (`DELETE`)
+- [x] Regras de negócio na camada **Service** (categoria existente e produto existente, com `404`)
+- [x] Validações com Bean Validation nos DTOs, com `@Valid` no `ProdutoController`
+- [x] `@RestControllerAdvice` tratando **404**
+- [ ] `@RestControllerAdvice` tratando **400** (`MethodArgumentNotValidException`, com o mapa `campos`)
+- [x] `CategoriaService` (listar, buscar por ID, criar)
+- [ ] `CategoriaController`: `GET /categorias` e `POST /categorias` feitos, falta `GET /categorias/{id}`
+- [ ] 📝 **Pendência (R3):** impedir categoria com nome repetido. Hoje a restrição `unique` do banco gera `500`. Fazer: `existsByNomeIgnoreCase` no `CategoriaRepository`, checar no `adicionarCategoria`, criar `ConflitoException` e o handler **409** no `GlobalExceptionHandler`.
 
 ### A5. Consultas com filtros
-- [ ] `GET /categorias/{id}/produtos` (filtro no **path**)
-- [ ] `GET /produtos?nome=&cor=` (**múltiplos parâmetros**)
+- [x] Service: `listarProdutosPorCategoria` (valida a categoria e responde `404`)
+- [x] Controller: `GET /categorias/{id}/produtos` (filtro no **path**)
+- [x] `GET /produtos?nome=&cor=` (**múltiplos parâmetros**), com service e controller
 - [ ] Testar combinações (só nome, só cor, ambos, nenhum)
 
-### A6. Login e segurançagit add backend/loja-api/src/main/java/com/unipar/lojaapi/controller/ProdutoController.java
-  git commit -m "feat(backend): implementa ProdutoController com CRUD e consulta por nome/cor (A4/A5)" 
+### A6. Login e segurança
 - [ ] `PasswordEncoder` (BCrypt) para as senhas
 - [ ] `POST /auth/login` devolvendo o JWT
 - [ ] Filtro JWT validando o token nas requisições
