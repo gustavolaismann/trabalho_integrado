@@ -31,10 +31,11 @@ public class ProdutoMapper {
     }
 
     // Atualiza a entidade existente com os dados do record
-    public static void atualizar(Produto produto, ProdutoRequestDto dto, Categoria categoria){
+    public static Produto atualizar(Produto produto, ProdutoRequestDto dto, Categoria categoria){
         produto.setNome(dto.nome());
         produto.setCor(dto.cor());
         produto.setPreco(dto.preco());
         produto.setCategoria(categoria);
+        return produto;
     }
 }
