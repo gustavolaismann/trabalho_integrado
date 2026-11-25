@@ -77,4 +77,21 @@ public class ProdutoService {
 
        produtoRepository.deleteById(id);
     }
+
+    @Transactional(readOnly = true)
+    public List<ProdutoResponseDto> listarProdutosPorCategoria(Long id){
+       Categoria categoria = buscarCategoria(id);
+       return produtoRepository.findByCategoriaId(categoria.getId()).stream().map(ProdutoMapper::toResponse).toList();
+
+    }
+
+    @Transactional(readOnly = true)
+    public List<ProdutoResponseDto> listarProdutosPorNomeCor(String nome, String cor){
+        if (nome == null) nome = "";
+        if (cor == null) cor = "";
+
+        return produtoRepository.findByNomeContainingIgnoreCaseAndCorContainingIgnoreCase(nome, cor).stream()
+                .map(ProdutoMapper::toResponse).toList();
+    }
+
 }
