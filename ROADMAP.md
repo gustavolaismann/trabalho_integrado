@@ -38,7 +38,8 @@
 - [ ] **Parte B:** Frontend
 - [ ] **Parte C:** Entrega
 
-> 📍 **Parou em:** A4/A5, faltam o `GET /categorias/{id}`, o teste no Swagger, o handler do erro 400 de validação e a pendência do 409 (categoria duplicada).
+> 📍 **Parou em:** CRUD e consultas testados no Swagger. Faltam o handler do erro **400** de validação, a pendência do **409** (categoria duplicada) e, depois, a A6 (login com JWT).
+> ⚠️ O `SecurityConfig` atual está **provisório** (`permitAll` e CSRF desligado). Substituir na A6 antes da entrega.
 
 > 💡 O front consome a API, então termine pelo menos o CRUD e o login do backend antes de avançar muito no Angular.
 
@@ -88,20 +89,20 @@
 - [x] `@RestControllerAdvice` tratando **404**
 - [ ] `@RestControllerAdvice` tratando **400** (`MethodArgumentNotValidException`, com o mapa `campos`)
 - [x] `CategoriaService` (listar, buscar por ID, criar)
-- [ ] `CategoriaController`: `GET /categorias` e `POST /categorias` feitos, falta `GET /categorias/{id}`
+- [x] `CategoriaController` (`GET /categorias`, `GET /categorias/{id}`, `POST /categorias`)
 - [ ] 📝 **Pendência (R3):** impedir categoria com nome repetido. Hoje a restrição `unique` do banco gera `500`. Fazer: `existsByNomeIgnoreCase` no `CategoriaRepository`, checar no `adicionarCategoria`, criar `ConflitoException` e o handler **409** no `GlobalExceptionHandler`.
 
 ### A5. Consultas com filtros
 - [x] Service: `listarProdutosPorCategoria` (valida a categoria e responde `404`)
 - [x] Controller: `GET /categorias/{id}/produtos` (filtro no **path**)
 - [x] `GET /produtos?nome=&cor=` (**múltiplos parâmetros**), com service e controller
-- [ ] Testar combinações (só nome, só cor, ambos, nenhum)
+- [x] Testar combinações (só nome, só cor, ambos, nenhum)
 
 ### A6. Login e segurança
 - [ ] `PasswordEncoder` (BCrypt) para as senhas
 - [ ] `POST /auth/login` devolvendo o JWT
 - [ ] Filtro JWT validando o token nas requisições
-- [ ] `SecurityFilterChain` protegendo os endpoints
+- [ ] `SecurityFilterChain` protegendo os endpoints (substitui o `permitAll` provisório)
 - [ ] Usuário inicial criado (`data.sql` ou seed)
 - [ ] ⭐ **Extra (0,5):** perfis `ADMIN` e `COMUM` (ex.: só admin exclui)
 
