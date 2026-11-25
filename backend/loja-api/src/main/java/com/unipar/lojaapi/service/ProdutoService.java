@@ -22,27 +22,27 @@ public class ProdutoService {
     private final CategoriaRepository categoriaRepository;
 
 
-    private Categoria buscarCategoria(Long id){
+    private Categoria buscarCategoria(Long id) {
         return categoriaRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Categoria não encontrada: " + id));
     }
 
     @Transactional
-    public ProdutoResponseDto adicionarProduto(ProdutoRequestDto dto){
-       Categoria categoria = buscarCategoria(dto.categoriaId());
+    public ProdutoResponseDto adicionarProduto(ProdutoRequestDto dto) {
+        Categoria categoria = buscarCategoria(dto.categoriaId());
 
-       // Cria um produto a partir do DTO e categoria encontrada
-       Produto produto = ProdutoMapper.toEntity(dto, categoria);
+        // Cria um produto a partir do DTO e categoria encontrada
+        Produto produto = ProdutoMapper.toEntity(dto, categoria);
 
-       // Salva produto e pega o retorno do repositorio
-       Produto salvo = produtoRepository.save(produto);
+        // Salva produto e pega o retorno do repositorio
+        Produto salvo = produtoRepository.save(produto);
 
-       // Retorna o produto mascarado (dto)
-       return ProdutoMapper.toResponse(salvo);
+        // Retorna o produto mascarado (dto)
+        return ProdutoMapper.toResponse(salvo);
     }
 
     @Transactional
-    public ProdutoResponseDto atualizarProduto(Long id, ProdutoRequestDto dto){
+    public ProdutoResponseDto atualizarProduto(Long id, ProdutoRequestDto dto) {
 
         Produto produto = produtoRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Produto não encontrado: " + id));
@@ -58,35 +58,35 @@ public class ProdutoService {
 
 
     @Transactional(readOnly = true)
-    public ProdutoResponseDto buscarProdutoPorId(Long id){
+    public ProdutoResponseDto buscarProdutoPorId(Long id) {
         return produtoRepository.findById(id).map(ProdutoMapper::toResponse)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Produto não encontrado: " + id));
     }
 
     @Transactional(readOnly = true)
-    public List<ProdutoResponseDto> listarProdutos(){
+    public List<ProdutoResponseDto> listarProdutos() {
         return produtoRepository.findAll().stream().map(ProdutoMapper::toResponse).toList();
     }
 
     @Transactional
-    public void excluirProduto(Long id){
+    public void excluirProduto(Long id) {
 
-       if (!produtoRepository.existsById(id)){
+        if (!produtoRepository.existsById(id)) {
             throw new RecursoNaoEncontradoException("Produto não encontrado pelo id: " + id);
-       }
+        }
 
-       produtoRepository.deleteById(id);
+        produtoRepository.deleteById(id);
     }
 
     @Transactional(readOnly = true)
-    public List<ProdutoResponseDto> listarProdutosPorCategoria(Long id){
-       Categoria categoria = buscarCategoria(id);
-       return produtoRepository.findByCategoriaId(categoria.getId()).stream().map(ProdutoMapper::toResponse).toList();
+    public List<ProdutoResponseDto> listarProdutosPorCategoria(Long id) {
+        Categoria categoria = buscarCategoria(id);
+        return produtoRepository.findByCategoriaId(categoria.getId()).stream().map(ProdutoMapper::toResponse).toList();
 
     }
 
     @Transactional(readOnly = true)
-    public List<ProdutoResponseDto> listarProdutosPorNomeCor(String nome, String cor){
+    public List<ProdutoResponseDto> listarProdutosPorNomeCor(String nome, String cor) {
         if (nome == null) nome = "";
         if (cor == null) cor = "";
 
