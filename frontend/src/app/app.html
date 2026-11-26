@@ -1,0 +1,23 @@
+<!-- Menu: só aparece quando há usuário logado -->
+@if (auth.logado()) {
+  <nav class="menu">
+    <a routerLink="/produtos" routerLinkActive="ativo" [routerLinkActiveOptions]="{ exact: true }">Produtos</a>
+    @if (auth.ehAdmin()) {
+      <a routerLink="/produtos/novo" routerLinkActive="ativo">Novo produto</a>
+    }
+    <a routerLink="/categorias-produtos" routerLinkActive="ativo">Produtos por categoria</a>
+    <a routerLink="/buscar" routerLinkActive="ativo">Buscar produtos</a>
+    <button type="button" class="sair" (click)="auth.logout()">Sair</button>
+  </nav>
+}
+
+<main class="conteudo">
+  <!-- Mensagem de sucesso ou erro -->
+  @if (notificacao.mensagem(); as m) {
+    <div class="alerta" [class.sucesso]="m.tipo === 'sucesso'" [class.erro]="m.tipo === 'erro'">
+      <span>{{ m.texto }}</span>
+      <button type="button" (click)="notificacao.fechar()">×</button>
+    </div>
+  }
+  <router-outlet />
+</main>

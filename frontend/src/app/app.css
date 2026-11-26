@@ -1,0 +1,9 @@
+.menu { display: flex; gap: 16px; align-items: center; background: #212529; padding: 12px 24px; }
+.menu a { color: #ced4da; text-decoration: none; }
+.menu a.ativo, .menu a:hover { color: #fff; font-weight: bold; }
+.menu .sair { margin-left: auto; background: #dc3545; }
+.conteudo { max-width: 960px; margin: 24px auto; padding: 0 16px; }
+.alerta { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 4px; margin-bottom: 16px; }
+.alerta.sucesso { background: #d1e7dd; color: #0f5132; }
+.alerta.erro { background: #f8d7da; color: #842029; }
+.alerta button { background: transparent; color: inherit; font-size: 1.2rem; padding: 0 6px; }

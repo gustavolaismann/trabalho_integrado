@@ -1,0 +1,16 @@
+<h1>Login</h1>
+<form [formGroup]="form" (ngSubmit)="entrar()">
+  <label for="login">Usuário</label>
+  <input id="login" formControlName="login" autocomplete="username" />
+  @if (form.controls.login.touched && form.controls.login.invalid) {
+    <p class="invalido">Informe o usuário.</p>
+  }
+
+  <label for="senha">Senha</label>
+  <input id="senha" type="password" formControlName="senha" autocomplete="current-password" />
+  @if (form.controls.senha.touched && form.controls.senha.invalid) {
+    <p class="invalido">Informe a senha.</p>
+  }
+
+  <p><button type="submit" [disabled]="enviando()">Entrar</button></p>
+</form>
