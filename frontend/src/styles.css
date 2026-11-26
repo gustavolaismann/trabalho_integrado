@@ -1,0 +1,16 @@
+/* Estilos globais simples */
+body { font-family: Arial, sans-serif; margin: 0; background: #f4f5f7; color: #222; }
+h1 { font-size: 1.5rem; }
+table { border-collapse: collapse; width: 100%; background: #fff; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background: #e9ecef; }
+label { display: block; margin-top: 12px; font-weight: bold; }
+input, select { padding: 6px; width: 100%; max-width: 360px; box-sizing: border-box; }
+button, .botao { padding: 7px 14px; border: 0; border-radius: 4px; background: #0d6efd; color: #fff; cursor: pointer; text-decoration: none; font-size: 0.9rem; display: inline-block; }
+button:disabled { background: #999; cursor: not-allowed; }
+.perigo { background: #dc3545; }
+.secundario { background: #6c757d; }
+.acoes { display: flex; gap: 6px; }
+.invalido { color: #dc3545; font-size: 0.85rem; margin: 2px 0 0; }
+.linha { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
+.vazio { color: #666; }
