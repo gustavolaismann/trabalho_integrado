@@ -34,12 +34,11 @@
 
 ## 📊 Progresso geral
 
-- [ ] **Parte A:** Backend *(em andamento: A0 a A3 concluídas, A4 e A5 em andamento)*
+- [ ] **Parte A:** Backend *(concluída, exceto o 409 de categoria duplicada)*
 - [ ] **Parte B:** Frontend
 - [ ] **Parte C:** Entrega
 
-> 📍 **Parou em:** CRUD e consultas testados no Swagger. Faltam o handler do erro **400** de validação, a pendência do **409** (categoria duplicada) e, depois, a A6 (login com JWT).
-> ⚠️ O `SecurityConfig` atual está **provisório** (`permitAll` e CSRF desligado). Substituir na A6 antes da entrega.
+> 📍 **Parou em:** backend concluído (A0 a A7), exceto o 409, que ficou fora do escopo. Falta conferir o front, atualizar o `ROTEIRO.md` com o JWT e gravar o vídeo.
 
 > 💡 O front consome a API, então termine pelo menos o CRUD e o login do backend antes de avançar muito no Angular.
 
@@ -87,10 +86,10 @@
 - [x] Regras de negócio na camada **Service** (categoria existente e produto existente, com `404`)
 - [x] Validações com Bean Validation nos DTOs, com `@Valid` no `ProdutoController`
 - [x] `@RestControllerAdvice` tratando **404**
-- [ ] `@RestControllerAdvice` tratando **400** (`MethodArgumentNotValidException`, com o mapa `campos`)
+- [x] `@RestControllerAdvice` tratando **400** (`MethodArgumentNotValidException`, com o mapa `campos`)
 - [x] `CategoriaService` (listar, buscar por ID, criar)
 - [x] `CategoriaController` (`GET /categorias`, `GET /categorias/{id}`, `POST /categorias`)
-- [ ] 📝 **Pendência (R3):** impedir categoria com nome repetido. Hoje a restrição `unique` do banco gera `500`. Fazer: `existsByNomeIgnoreCase` no `CategoriaRepository`, checar no `adicionarCategoria`, criar `ConflitoException` e o handler **409** no `GlobalExceptionHandler`.
+- [ ] 📝 **Fora do escopo desta entrega (R3):** impedir categoria com nome repetido. Hoje a restrição `unique` do banco gera `500`. Fazer: `existsByNomeIgnoreCase` no `CategoriaRepository`, checar no `adicionarCategoria`, criar `ConflitoException` e o handler **409** no `GlobalExceptionHandler`.
 
 ### A5. Consultas com filtros
 - [x] Service: `listarProdutosPorCategoria` (valida a categoria e responde `404`)
@@ -99,20 +98,20 @@
 - [x] Testar combinações (só nome, só cor, ambos, nenhum)
 
 ### A6. Login e segurança
-- [ ] `PasswordEncoder` (BCrypt) para as senhas
-- [ ] `POST /auth/login` devolvendo o JWT
-- [ ] Filtro JWT validando o token nas requisições
-- [ ] `SecurityFilterChain` protegendo os endpoints (substitui o `permitAll` provisório)
-- [ ] Usuário inicial criado (`data.sql` ou seed)
-- [ ] ⭐ **Extra (0,5):** perfis `ADMIN` e `COMUM` (ex.: só admin exclui)
+- [x] `PasswordEncoder` (BCrypt) para as senhas
+- [x] `POST /auth/login` devolvendo o JWT
+- [x] Filtro JWT validando o token nas requisições
+- [x] `SecurityFilterChain` protegendo os endpoints (substituiu o `permitAll` provisório)
+- [x] Usuário inicial criado (`data.sql` ou seed)
+- [x] ⭐ **Extra (0,5):** perfis `ADMIN` e `COMUM` (ex.: só admin exclui)
 
 > 📚 **Estudar:** JWT, filtros do Spring Security, autenticação e autorização.
 
 ### A7. CORS e documentação
-- [ ] Liberar CORS para `http://localhost:4200`
-- [ ] Adicionar Swagger (springdoc-openapi)
-- [ ] Testar todos os endpoints no Swagger ou Postman
-- [ ] README do backend explicando como rodar
+- [x] Liberar CORS para `http://localhost:4200`
+- [x] Adicionar Swagger (springdoc-openapi)
+- [x] Testar todos os endpoints no Swagger ou Postman
+- [x] README do backend explicando como rodar
 
 ---
 

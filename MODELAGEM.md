@@ -209,19 +209,19 @@ Para o `400` de validação, inclua também a lista de campos com erro:
 | `admin` | `admin123` | `ADMIN` |
 | `usuario` | `user123` | `COMUM` |
 
-**Categorias:** Papelaria, Eletrônicos, Vestuário.
+**Categorias:** Eletrônicos, Livros, Acessórios.
 
 **Produtos de exemplo**
 
 | Nome | Cor | Preço | Categoria |
 |---|---|---|---|
-| Caneta esferográfica | Azul | 2,50 | Papelaria |
-| Caneta esferográfica | Preta | 2,50 | Papelaria |
-| Caderno 100 folhas | Azul | 18,90 | Papelaria |
-| Mouse sem fio | Preto | 59,90 | Eletrônicos |
-| Camiseta básica | Azul | 39,90 | Vestuário |
+| Notebook Pro | Preto | 4500,00 | Eletrônicos |
+| Smartphone X | Verde | 2800,00 | Eletrônicos |
+| Livro de Backend | Azul | 120,00 | Livros |
+| Livro Front | Verde | 40,00 | Livros |
+| Mouse Sem Fio | Azul | 85,00 | Acessórios |
 
-Esses dados dão resultado nos dois filtros (`nome=caneta&cor=azul`, `GET /categorias/1/produtos`).
+Esses dados dão resultado nos dois filtros (`nome=livro&cor=azul`, `cor=verde`, `GET /categorias/2/produtos`).
 
 ---
 
