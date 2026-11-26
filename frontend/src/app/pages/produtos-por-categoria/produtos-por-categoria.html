@@ -1,0 +1,30 @@
+<h1>Produtos por categoria</h1>
+
+<label for="categoria">Categoria</label>
+<select id="categoria" #sel (change)="escolher(sel.value)">
+  <option value="">Selecione...</option>
+  @for (c of categorias(); track c.id) {
+    <option [value]="c.id">{{ c.nome }}</option>
+  }
+</select>
+
+@if (produtos().length > 0) {
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Nome</th><th>Cor</th><th>Preço</th><th>Ações</th></tr>
+    </thead>
+    <tbody>
+      @for (p of produtos(); track p.id) {
+        <tr>
+          <td>{{ p.id }}</td>
+          <td>{{ p.nome }}</td>
+          <td>{{ p.cor }}</td>
+          <td>{{ p.preco | currency: 'BRL' }}</td>
+          <td><a class="botao secundario" [routerLink]="['/produtos', p.id]">Detalhes</a></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+} @else if (consultou()) {
+  <p class="vazio">Nenhum produto nesta categoria.</p>
+}
