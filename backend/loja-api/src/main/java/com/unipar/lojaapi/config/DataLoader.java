@@ -60,7 +60,7 @@ public class DataLoader implements CommandLineRunner {
         catAcessorios.setNome("Acessórios");
         catAcessorios = categoriaRepository.save(catAcessorios);
 
-        // Criação e salvamento dos cinco produtos vinculados às categorias salvas
+        // euCriação e salvamento dos cinco produtos vinculados às categorias salvas
         Produto p1 = new Produto();
         p1.setNome("Notebook Pro");
         p1.setPreco(new BigDecimal("4500.00"));
