@@ -1,0 +1,30 @@
+<h1>Produtos</h1>
+
+@if (produtos().length === 0) {
+  <p class="vazio">Nenhum produto cadastrado.</p>
+} @else {
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Nome</th><th>Cor</th><th>Preço</th><th>Categoria</th><th>Ações</th></tr>
+    </thead>
+    <tbody>
+      @for (p of produtos(); track p.id) {
+        <tr>
+          <td>{{ p.id }}</td>
+          <td>{{ p.nome }}</td>
+          <td>{{ p.cor }}</td>
+          <td>{{ p.preco | currency: 'BRL' }}</td>
+          <td>{{ p.categoriaNome }}</td>
+          <td class="acoes">
+            <a class="botao secundario" [routerLink]="['/produtos', p.id]">Detalhes</a>
+            <!-- Editar e excluir: só para ADMIN -->
+            @if (auth.ehAdmin()) {
+              <a class="botao" [routerLink]="['/produtos', p.id, 'editar']">Editar</a>
+              <button type="button" class="perigo" (click)="excluir(p)">Excluir</button>
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
